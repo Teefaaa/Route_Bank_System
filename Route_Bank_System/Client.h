@@ -28,6 +28,7 @@ public:
     void deposit(double amount);
     void withdraw(double amount);
     void transfer_to(double amount, Client& recipient);
+    void auto_transfer_at(int hour,int minute,int second,double amount, Client& recipient);
 
     void check_balance();
     void check_account_status();

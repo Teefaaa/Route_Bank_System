@@ -45,5 +45,23 @@ int main()
     c3.deposit(5000);
     c3.display();
     c3.show_transaction_history();
+
+    cout << "Initial balances:\n";
+    c1.check_balance();
+    c2.check_balance();
+
+    cout << "\nAuto transfer will run when time matches...\n";
+    cout << "Allowed window: 12:00 -> 23:59:59\n\n";
+
+    while (true)
+    {
+        c1.auto_transfer_at(
+            18, 30, 0, 
+            500,           
+            c2        
+        );
+    }
+
+    return 0;
     return 0;
 }

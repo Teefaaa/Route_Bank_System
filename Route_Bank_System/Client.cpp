@@ -65,6 +65,47 @@ bool Client::getActive()
 {
     return isActive;
 }
+/* ================= AUTO TRANSACTIONS ================= */
+
+void Client::auto_transfer_at(
+    int hour,
+    int minute,
+    int second,
+    double amount,
+    Client& recipient
+)
+{
+    if (!isActive)
+        return;
+
+    if (!recipient.getActive())
+        return;
+
+    Time now;
+    Time target(hour, minute, second);
+
+    // Allowed window: 12:00 -> 23:59:59
+    Time start(12, 0, 0);
+    Time end(23, 59, 59);
+
+    if (now.seconds_from(start) < 0 ||
+        end.seconds_from(now) < 0)
+        return;
+
+    if (now.seconds_from(target) == 0)
+    {
+        if (balance >= amount)
+        {
+            balance -= amount;
+            recipient.deposit(amount);
+
+            cout << "Auto transfer executed at "
+                << hour << ":"
+                << minute << ":"
+                << second << endl;
+        }
+    }
+}
 
 /* ================= TRANSACTIONS ================= */
 
