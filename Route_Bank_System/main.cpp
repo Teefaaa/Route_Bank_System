@@ -41,6 +41,9 @@ int main()
 
     cout << endl << "Trying to deposit to deactivated client:" << endl;
     c2.deposit(1000);
-
+    Client c3("Moustafa", "123456",3000);
+    c3.deposit(5000);
+    c3.display();
+    c3.show_transaction_history();
     return 0;
 }

@@ -34,8 +34,8 @@ string Client::getAccountStatus()
 bool Client::isTransferTimeAllowed()
 {
     Time now;
-    Time start(9, 0, 0);
-    Time end(17, 0, 0);
+    Time start(12, 0, 0);
+    Time end(0, 0, 0);
 
     return now.seconds_from(start) >= 0 &&
         end.seconds_from(now) >= 0;
@@ -113,7 +113,7 @@ void Client::transfer_to(double amount, Client& recipient)
 
     if (!isTransferTimeAllowed())
     {
-        cout << "Transfers allowed only between 09:00 and 17:00" << endl;
+        cout << "Transfers allowed only between 12:00 and 00:00" << endl;
         return;
     }
 
@@ -169,8 +169,9 @@ void Client::display()
         cout << "Account is deactivated" << endl;
         return;
     }
-
+    cout << " \t\t  /		Client Information		\\ " << endl << endl;
     Person::display();
+
     cout << "Balance: " << balance << endl;
     cout << "Status: " << getAccountStatus() << endl;
 }
