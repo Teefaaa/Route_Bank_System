@@ -1,6 +1,8 @@
 #include "Client.h"
 #include <iostream>
 
+using namespace std;
+
 void Client::turn_on() { ; }
 
 Client::Client(string name, string password, double balance)
@@ -8,23 +10,50 @@ Client::Client(string name, string password, double balance)
 {
     this->balance = balance;
     this->isActive = true;
+    transactionCount = 0;
 }
+
+/* ================= ACCOUNT STATUS ================= */
+
+string Client::getAccountStatus()
+{
+    if (balance < 5000)
+        return "Low";
+    else if (balance < 20000)
+        return "Normal";
+    else if (balance < 50000)
+        return "High";
+    else if (balance < 100000)
+        return "Super";
+    else
+        return "VIP";
+}
+
+/* ================= TIME CHECK ================= */
+
+bool Client::isTransferTimeAllowed()
+{
+    Time now;
+    Time start(9, 0, 0);
+    Time end(17, 0, 0);
+
+    return now.seconds_from(start) >= 0 &&
+        end.seconds_from(now) >= 0;
+}
+
+/* ================= BASIC SETTERS ================= */
 
 void Client::set_balance(double balance)
 {
     if (balance >= 1500)
-    {
         this->balance = balance;
-    }
     else
-    {
-        cout << "Sorry! it should be greater than or equal 1500" << endl;
-    }
+        cout << "Balance must be >= 1500" << endl;
 }
 
 double Client::get_balance()
 {
-    return this->balance;
+    return balance;
 }
 
 void Client::setActive(bool status)
@@ -32,81 +61,116 @@ void Client::setActive(bool status)
     isActive = status;
 }
 
-bool Client::getActive() const
+bool Client::getActive()
 {
     return isActive;
 }
+
+/* ================= TRANSACTIONS ================= */
 
 void Client::deposit(double amount)
 {
     if (!isActive)
     {
-        cout << "Account is deactivated!" << endl;
+        cout << "Account is deactivated" << endl;
         return;
     }
+
     balance += amount;
+
+    if (transactionCount < MAX_TRANSACTIONS)
+        transactions[transactionCount++] =
+        Transaction("Deposit", amount);
 }
 
 void Client::withdraw(double amount)
 {
     if (!isActive)
     {
-        cout << "Account is deactivated!" << endl;
+        cout << "Account is deactivated" << endl;
         return;
     }
+
     if (balance >= amount)
     {
         balance -= amount;
+
+        if (transactionCount < MAX_TRANSACTIONS)
+            transactions[transactionCount++] =
+            Transaction("Withdraw", amount);
     }
     else
-    {
-        cout << "Sorry! your balance is lower than this amount" << endl;
-    }
+        cout << "Insufficient balance" << endl;
 }
 
 void Client::transfer_to(double amount, Client& recipient)
 {
     if (!isActive)
     {
-        cout << "Account is deactivated!" << endl;
+        cout << "Account is deactivated" << endl;
         return;
     }
-    if (balance >= amount)
+
+    if (!isTransferTimeAllowed())
     {
-        if (!recipient.getActive())
-        {
-            cout << "Recipient account is deactivated!" << endl;
-            return;
-        }
-        this->withdraw(amount);
+        cout << "Transfers allowed only between 09:00 and 17:00" << endl;
+        return;
+    }
+
+    if (balance >= amount && recipient.getActive())
+    {
+        balance -= amount;
         recipient.deposit(amount);
-        cout << "Successfully! " + to_string(amount) +
-            " transferred to " + recipient.get_name() << endl;
+
+        if (transactionCount < MAX_TRANSACTIONS)
+            transactions[transactionCount++] =
+            Transaction("Transfer", amount);
+
+        cout << "Transfer successful" << endl;
     }
     else
-    {
-        cout << "Sorry! failed transfer, your balance is lower than this amount" << endl;
-    }
+        cout << "Transfer failed" << endl;
 }
 
-void Client::check_balance() const
+/* ================= DISPLAY ================= */
+
+void Client::check_balance()
 {
-    if (!isActive)
+    cout << "Balance: " << balance << endl;
+}
+
+void Client::check_account_status()
+{
+    cout << "Account Status: " << getAccountStatus() << endl;
+}
+
+void Client::show_transaction_history()
+{
+    cout << "\n--- Transaction History ---" << endl;
+
+    for (int i = 0; i < transactionCount; i++)
     {
-        cout << "Account is deactivated!" << endl;
-        return;
+        Time t = transactions[i].get_time();
+
+        cout << transactions[i].get_type() << ": "
+            << transactions[i].get_amount()
+            << " at "
+            << t.get_hours() << ":"
+            << t.get_minutes() << ":"
+            << t.get_seconds()
+            << endl;
     }
-    cout << "Your balance:" << balance << endl;
 }
 
 void Client::display()
 {
     if (!isActive)
     {
-        cout << "Account is deactivated!" << endl;
+        cout << "Account is deactivated" << endl;
         return;
     }
-    cout << " \t\t  */\t\tClient Information\t\t\\* " << endl << endl;
+
     Person::display();
-    cout << "Balance: " << this->balance << endl;
+    cout << "Balance: " << balance << endl;
+    cout << "Status: " << getAccountStatus() << endl;
 }
