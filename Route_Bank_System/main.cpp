@@ -2,7 +2,7 @@
 #include "Client.h"
 #include "Employee.h"
 #include "Admin.h"
-
+#include <iomanip>
 using namespace std;
 
 int main()
@@ -66,18 +66,15 @@ int main()
     Client c1("Mahmoud", "Pass@123", 5000);
     Client c2("Ahmed", "Hello@456", 2000);
 
-    int hour = 22;
-    int minute = 05;
-    int second = 00;
+    int hour, minute, second;
 
-    cout << "Initial Balances:\n";
-    c1.check_balance();
-    c2.check_balance();
+    cout << "Enter auto transfer time (HH MM SS): ";
+    cin >> hour >> minute >> second;
 
     cout << "\nAuto transfer scheduled at "
-        << hour << ":"
-        << minute << ":"
-        << second << endl;
+        << setw(2) << setfill('0') << hour << ":"
+        << setw(2) << setfill('0') << minute << ":"
+        << setw(2) << setfill('0') << second << endl;
 
     cout << "Waiting...\n";
 
@@ -88,6 +85,7 @@ int main()
         if (c1.get_balance() < 5000)
             break;
     }
+
 
 
     return 0;
