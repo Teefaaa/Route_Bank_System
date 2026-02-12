@@ -7,6 +7,7 @@ using namespace std;
 
 int main()
 {
+    /*
     Client c1("Mahmoud", "Pass@123", 3000);
     Client c2("Ahmed", "Hello@456", 2000);
 
@@ -56,12 +57,38 @@ int main()
     while (true)
     {
         c1.auto_transfer_at(
-            18, 30, 0, 
-            500,           
-            c2        
+            18, 30, 0,
+            500,
+            c2
         );
     }
+    */
+    Client c1("Mahmoud", "Pass@123", 5000);
+    Client c2("Ahmed", "Hello@456", 2000);
+
+    int hour = 22;
+    int minute = 05;
+    int second = 00;
+
+    cout << "Initial Balances:\n";
+    c1.check_balance();
+    c2.check_balance();
+
+    cout << "\nAuto transfer scheduled at "
+        << hour << ":"
+        << minute << ":"
+        << second << endl;
+
+    cout << "Waiting...\n";
+
+    while (true)
+    {
+        c1.auto_transfer_at(hour, minute, second, 1000, c2);
+
+        if (c1.get_balance() < 5000)
+            break;
+    }
+
 
     return 0;
-
 }

@@ -11,7 +11,7 @@ private:
     static const int MAX_TRANSACTIONS = 100;
     Transaction transactions[MAX_TRANSACTIONS];
     int transactionCount;
-
+    bool autoTransferDone;
     void turn_on();
     bool isTransferTimeAllowed();
     string getAccountStatus();

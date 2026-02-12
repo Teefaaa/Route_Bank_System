@@ -1,4 +1,6 @@
 #include "Client.h"
+#include <cmath>
+#include <iomanip>
 #include <iostream>
 
 using namespace std;
@@ -10,6 +12,7 @@ Client::Client(string name, string password, double balance)
 {
     this->balance = balance;
     this->isActive = true;
+    autoTransferDone = false;
     transactionCount = 0;
 }
 
@@ -75,10 +78,7 @@ void Client::auto_transfer_at(
     Client& recipient
 )
 {
-    if (!isActive)
-        return;
-
-    if (!recipient.getActive())
+    if (!isActive || !recipient.getActive())
         return;
 
     Time now;
@@ -92,17 +92,29 @@ void Client::auto_transfer_at(
         end.seconds_from(now) < 0)
         return;
 
-    if (now.seconds_from(target) == 0)
+ 
+    if (abs(now.seconds_from(target)) <= 1 && !autoTransferDone)
     {
         if (balance >= amount)
         {
             balance -= amount;
             recipient.deposit(amount);
 
+            autoTransferDone = true;
+
             cout << "Auto transfer executed at "
                 << hour << ":"
-                << minute << ":"
-                << second << endl;
+                << setw(2) << setfill('0') << minute << ":"
+                << setw(2) << setfill('0') << second << endl;
+
+            cout << "\nUpdated Balances:\n";
+            cout << "Sender balance: " << balance << endl;
+            cout << "Recipient balance: "
+                << recipient.get_balance() << endl;
+        }
+        else
+        {
+            cout << "Auto transfer failed: insufficient balance\n";
         }
     }
 }
