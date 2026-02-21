@@ -2,6 +2,7 @@
 #include <cmath>
 #include <iomanip>
 #include <iostream>
+#include "FilesHelper.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ void Client::turn_on() { ; }
 Client::Client(string name, string password, double balance)
     : Person(name, password)
 {
-    this->id = client_counter++;
+    this->id = /*client_counter++*/ FilesHelper::getNextClientId();
     autoTransferDone = false;
     this->balance = balance;
     this->isActive = true;

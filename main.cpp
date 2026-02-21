@@ -1,8 +1,8 @@
 #include <iostream>
-#include "Client.h"
-#include "Employee.h"
 #include "Admin.h"
 #include <iomanip>
+#include <fstream>
+#include "FilesHelper.h"
 
 using namespace std;
 
@@ -105,3 +105,36 @@ int main()
 
     return 0;
 }
+
+
+
+
+
+/*
+
+
+
+#include <iostream>
+#include "Client.h"
+#include "FilesHelper.h"
+
+using namespace std;
+
+int main()
+{
+    Client c1("AhmedAli", "Aa1234@@", 10000);
+    Client c2("MonaHassan", "Bb5678@@", 15000);
+    Client c3("OmarSaleh", "Cc9999@@", 20000);
+
+    cout << "Client 1 ID: " << c1.get_id() << endl;
+    cout << "Client 2 ID: " << c2.get_id() << endl;
+    cout << "Client 3 ID: " << c3.get_id() << endl;
+
+    return 0;
+}
+
+
+*/
+
+
+// To test only If this system reads the txt files or not //

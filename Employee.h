@@ -1,6 +1,10 @@
 #pragma once
 #include "Person.h"
 #include "Client.h"
+
+class FilesHelper;
+
+
 class Employee :
     public Person
 {
@@ -23,4 +27,7 @@ public:
     void view_client_balance(Client c);
 
     void display();
+
+
+    friend class FilesHelper;
 };

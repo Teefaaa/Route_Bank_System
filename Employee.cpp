@@ -1,4 +1,5 @@
 #include "Employee.h"
+#include "FilesHelper.h"
 #include <iostream>
 
 int Employee::employee_counter = 2100000;
@@ -9,7 +10,7 @@ void Employee::turn_on() { ; }
 Employee::Employee(string name, string password, double salary)
     : Person(name, password)
 {
-    this->id = employee_counter++;
+    this->id = /*employee_counter++*/   FilesHelper::getNextEmployeeId();
     this->salary = salary;
     this->total_salaries+=this->salary;
 }

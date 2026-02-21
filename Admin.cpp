@@ -1,4 +1,5 @@
 #include "Admin.h"
+#include "FilesHelper.h"
 #include <iostream>
 #include<iomanip>
 
@@ -11,7 +12,7 @@ void Admin::turn_on() { ; }
 Admin::Admin(string name, string password, double salary)
     : Employee(name, password, salary)
 {
-    this->id = admin_counter++;
+    this->id = /*admin_counter++*/   FilesHelper::getNextAdminId();
 }
 
 void Admin:: increase_salary(Employee& e,double amount)
