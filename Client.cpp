@@ -15,7 +15,7 @@ void Client::turn_on() { ; }
 Client::Client(string name, string password, double balance)
     : Person(name, password)
 {
-    this->id = /*client_counter++*/ FilesHelper::getNextClientId();
+    this->id = FilesHelper::getNextClientId();
     autoTransferDone = false;
     this->balance = balance;
     this->isActive = true;
@@ -24,6 +24,17 @@ Client::Client(string name, string password, double balance)
     this-> total_balances += this->balance;
     this-> total_loans += this->loan;
     this->risk_counter = 0;
+}
+
+
+Client::Client(int id, string name, string password, double balance,
+            bool status, double loan, short risk_counter) : Person(name, password)
+{
+    this->id= id;
+    this->balance = balance;
+    this->isActive = status;
+    this->loan = loan;
+    this->risk_counter = risk_counter;
 }
 
 /* ================= ACCOUNT STATUS ================= */
@@ -94,6 +105,12 @@ double Client:: get_total_loans() const
 short Client:: get_risk_counter() const
 {
     return this->risk_counter;
+}
+
+
+double Client:: get_loan() const
+{
+    return this->loan;
 }
 /* ================= AUTO TRANSACTIONS ================= */
 

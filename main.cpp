@@ -1,3 +1,5 @@
+/*
+
 #include <iostream>
 #include "Admin.h"
 #include <iomanip>
@@ -64,7 +66,7 @@ int main()
         );
     }
 */
-
+/*
     Client c7("Mahmoud", "Pass@123", 5000);
     Client c8("Ahmed", "Hello@456", 2000);
     int hour, minute, second;
@@ -108,9 +110,9 @@ int main()
 
 
 
+*/
 
 
-/*
 
 
 
@@ -130,11 +132,12 @@ int main()
     cout << "Client 2 ID: " << c2.get_id() << endl;
     cout << "Client 3 ID: " << c3.get_id() << endl;
 
+
     return 0;
 }
 
 
-*/
+
 
 
 // To test only If this system reads the txt files or not //

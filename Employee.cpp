@@ -10,9 +10,16 @@ void Employee::turn_on() { ; }
 Employee::Employee(string name, string password, double salary)
     : Person(name, password)
 {
-    this->id = /*employee_counter++*/   FilesHelper::getNextEmployeeId();
+    this->id = FilesHelper::getNextEmployeeId();
     this->salary = salary;
     this->total_salaries+=this->salary;
+}
+
+Employee::Employee(int id, string name, string password, double salary)
+            : Person(name, password)
+{
+    this->id= id;
+    this->salary = salary;
 }
 
 void Employee::set_salary(double salary)
@@ -82,3 +89,7 @@ void Employee::display()
     Person::display();
     cout << "Salary: " << this->salary << endl;
 }
+
+
+
+

@@ -2,9 +2,15 @@
 #include "DataSourceInterface.h"
 #include <fstream>
 #include <iostream>
+#include <vector>
 using namespace std;
 
-class FileManager : public DataSourceInterface {
+class Client;
+class Employee;
+class Admin;
+
+class FileManager : public DataSourceInterface
+{
 public:
     void addClient(Client obj) override;
     void addEmployee(Employee obj) override;
@@ -17,4 +23,9 @@ public:
     void removeAllClients() override;
     void removeAllEmployees() override;
     void removeAllAdmins() override;
+
+    vector<string> getData_intoLines(string textFile);
+
+
+
 };

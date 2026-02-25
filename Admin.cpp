@@ -15,6 +15,8 @@ Admin::Admin(string name, string password, double salary)
     this->id = /*admin_counter++*/   FilesHelper::getNextAdminId();
 }
 
+Admin::Admin(int id, string name, string password, double salary)
+       : Employee(id, name, password, salary){;}
 void Admin:: increase_salary(Employee& e,double amount)
 {
     e.set_salary(e.get_salary() + amount);

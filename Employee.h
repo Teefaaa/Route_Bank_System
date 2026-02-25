@@ -14,6 +14,14 @@ protected:
     static double total_salaries;
     void turn_on();
 
+
+    Employee(int id, string name, string password, double salary);
+
+            /// THIS ONLY FOR CREATING OBJECTS WHICH COME FROM FILES
+
+
+    friend class Parser;
+
 public:
     Employee(string name, string password, double salary);
 

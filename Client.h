@@ -21,6 +21,8 @@ private:
     short get_risk_counter() const;
 
     friend class Admin;
+    friend class FileManager;
+    friend class Parser;
 
     static const int MAX_TRANSACTIONS = 100;
     Transaction transactions[MAX_TRANSACTIONS];
@@ -31,8 +33,15 @@ private:
     bool isTransferTimeAllowed();
     string getAccountStatus();
 
+
+    Client(int id, string name, string password, double balance,
+            bool status, double loan, short risk_counter);
+
+            /// THIS ONLY FOR CREATING OBJECTS WHICH COME FROM FILES
+
 public:
     Client(string name, string password, double balance);
+
 
     void set_balance(double balance);
     double get_balance();
@@ -52,6 +61,8 @@ public:
     void check_balance();
     void check_account_status();
     void show_transaction_history();
+
+    double get_loan() const;
 
     void display();
 };
