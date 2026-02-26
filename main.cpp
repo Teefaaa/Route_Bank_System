@@ -112,32 +112,69 @@ int main()
 
 */
 
-
-
-
-
-#include <iostream>
 #include "Client.h"
+#include "Employee.h"
 #include "FilesHelper.h"
+#include <iostream>
 
 using namespace std;
 
-int main()
-{
-    Client c1("AhmedAli", "Aa1234@@", 10000);
-    Client c2("MonaHassan", "Bb5678@@", 15000);
-    Client c3("OmarSaleh", "Cc9999@@", 20000);
+int main() {
+  // Step 1: Load existing clients from Clients.txt into allClients vector
+  FilesHelper::getClients();
 
-    cout << "Client 1 ID: " << c1.get_id() << endl;
-    cout << "Client 2 ID: " << c2.get_id() << endl;
-    cout << "Client 3 ID: " << c3.get_id() << endl;
+  cout << "========================================" << endl;
+  cout << "   Clients loaded from file: " << allClients.size() << endl;
+  cout << "========================================" << endl << endl;
 
+  // Step 2: Display all clients before modifications
+  cout << "--- BEFORE modifications ---" << endl;
+  for (size_t i = 0; i < allClients.size(); i++) {
+    cout << "ID: " << allClients[i].get_id()
+         << " | Name: " << allClients[i].get_name()
+         << " | Balance: " << allClients[i].get_balance()
+         << " | Loan: " << allClients[i].get_loan() << endl;
+  }
+  cout << endl;
 
-    return 0;
+  // Step 3: Perform some operations (these will auto-save to Clients.txt)
+  if (allClients.size() >= 1) {
+    cout << ">> Depositing 5000 to " << allClients[0].get_name() << "..."
+         << endl;
+    allClients[0].deposit(5000);
+    cout << "   New balance: " << allClients[0].get_balance() << endl << endl;
+  }
+
+  if (allClients.size() >= 2) {
+    cout << ">> Withdrawing 1000 from " << allClients[1].get_name() << "..."
+         << endl;
+    allClients[1].withdraw(1000);
+    cout << "   New balance: " << allClients[1].get_balance() << endl << endl;
+  }
+
+  if (allClients.size() >= 3) {
+    cout << ">> Requesting loan for " << allClients[2].get_name() << "..."
+         << endl;
+    allClients[2].request_loan();
+    cout << "   New balance: " << allClients[2].get_balance()
+         << " | Loan: " << allClients[2].get_loan() << endl
+         << endl;
+  }
+
+  // Step 4: Display all clients after modifications
+  cout << "--- AFTER modifications ---" << endl;
+  for (size_t i = 0; i < allClients.size(); i++) {
+    cout << "ID: " << allClients[i].get_id()
+         << " | Name: " << allClients[i].get_name()
+         << " | Balance: " << allClients[i].get_balance()
+         << " | Loan: " << allClients[i].get_loan() << endl;
+  }
+
+  cout << endl;
+  cout << "========================================" << endl;
+  cout << "   All changes saved to Clients.txt!" << endl;
+  cout << "   Open the file to verify." << endl;
+  cout << "========================================" << endl;
+
+  return 0;
 }
-
-
-
-
-
-// To test only If this system reads the txt files or not //

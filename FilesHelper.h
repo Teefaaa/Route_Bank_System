@@ -2,35 +2,28 @@
 #include "Admin.h"
 #include "FileManager.h"
 
-
 class Client;
 class Employee;
 class Admin;
 
-
-class FilesHelper
-{
+class FilesHelper {
 public:
-    static int getNextClientId();
-    static int getNextEmployeeId();
-    static int getNextAdminId();
+  static int getNextClientId();
+  static int getNextEmployeeId();
+  static int getNextAdminId();
 
-    static void saveClient(Client c);
-    static void saveEmployee(Employee e);
-    static void saveAdmin(Admin a);
+  static void saveClient(Client c);
+  static void saveEmployee(Employee e);
+  static void saveAdmin(Admin a);
 
+  static void saveAllClients();
 
-    static void getClients();
-    static void getEmployees();
-    static void getAdmins();
-    static void clearFile(string fileName, string lastIDfile);
+  static void getClients();
+  static void getEmployees();
+  static void getAdmins();
+  static void clearFile(string fileName, string lastIDfile);
 
-
-
-friend class Client;
-friend class Employee;
-friend class Admin;
+  friend class Client;
+  friend class Employee;
+  friend class Admin;
 };
-
-
-
