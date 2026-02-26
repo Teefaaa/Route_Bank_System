@@ -93,3 +93,44 @@ void Employee::display()
 
 
 
+/// =========== OTHERS ===================
+
+
+void Employee::addClient(Client& client)
+{
+    allClients.push_back(client);
+}
+
+Client* Employee::searchClient(int id)
+{
+    for (size_t i = 0; i < allClients.size(); i++)
+    {
+        if (allClients[i].get_id() == id)
+        {
+            return &allClients[i];
+        }
+    }
+    return nullptr;
+}
+
+void Employee::listClient()
+{
+    if (allClients.empty())
+    {
+        cout << "No clients found" << endl;
+    }
+    else
+    {
+        cout << " \t\t  */		Clients List		\\* " << endl << endl;
+        for (size_t i = 0; i < allClients.size(); i++)
+        {
+            cout << "Client no. " << i+1 << endl;
+            allClients[i].display();
+            cout << endl;
+        }
+    }
+}
+
+
+
+

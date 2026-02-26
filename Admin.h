@@ -1,5 +1,12 @@
 #pragma once
 #include "Employee.h"
+
+extern vector<Client> allClients;
+extern vector<Employee> allEmployees;
+extern vector<Admin> allAdmins;
+
+
+
 class Admin :
     public Employee
 {
@@ -19,4 +26,9 @@ public:
     void increase_salary(Employee& e, double amount);
     void decrease_salary(Employee& e, double amount);
     void display();
+
+
+    void addEmployee(Employee& employee);
+    Employee* searchEmployee(int id);
+    void listEmployee();
 };

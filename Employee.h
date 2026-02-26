@@ -2,6 +2,12 @@
 #include "Person.h"
 #include "Client.h"
 
+extern vector<Client> allClients;
+extern vector<Employee> allEmployees;
+
+
+
+
 class FilesHelper;
 
 
@@ -35,6 +41,11 @@ public:
     void view_client_balance(Client c);
 
     void display();
+
+
+    void addClient(Client& client);
+    Client* searchClient(int id);
+    void listClient();
 
 
     friend class FilesHelper;

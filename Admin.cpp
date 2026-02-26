@@ -58,3 +58,43 @@ void Admin::display()
 }
 
 
+
+///   ============ OTHERS ===============
+
+void Admin::addEmployee(Employee& e)
+{
+    allEmployees.push_back(e);
+}
+
+Employee* Admin::searchEmployee(int id)
+{
+    for (size_t i = 0; i < allEmployees.size(); i++)
+    {
+        if (allEmployees[i].get_id() == id)
+        {
+            return &allEmployees[i];
+        }
+    }
+    return nullptr;
+}
+
+
+void Admin::listEmployee()
+{
+    if (allEmployees.empty())
+    {
+        cout << "No Employees found" << endl;
+    }
+    else
+    {
+        cout << " \t\t  */		 Employees List		\\* " << endl << endl;
+        for (size_t i = 0; i < allEmployees.size(); i++)
+        {
+            cout << "Employee no. " << i+1 << endl;
+            allEmployees[i].display();
+            cout << endl;
+        }
+    }
+}
+
+

@@ -1,6 +1,11 @@
 #pragma once
 #include "Person.h"
 #include "Transaction.h"
+#include <vector>
+
+
+
+
 
 class Admin;
 class Employee;
@@ -23,6 +28,7 @@ private:
     friend class Admin;
     friend class FileManager;
     friend class Parser;
+    friend class FilesHelper;
 
     static const int MAX_TRANSACTIONS = 100;
     Transaction transactions[MAX_TRANSACTIONS];
@@ -66,3 +72,7 @@ public:
 
     void display();
 };
+
+
+
+extern vector<Client> allClients;
