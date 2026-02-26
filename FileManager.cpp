@@ -1,150 +1,50 @@
 #include "FileManager.h"
+#include <fstream>
+#include <sstream>
 
+vector<Client> allClients;
 
-/// ============== TURNING FILES INTO VECTORS OF LINES ==============
-
-vector<string> FileManager::getData_intoLines(string textFile)
+void FileManager::addClient(Client c)
 {
-    ifstream file(textFile);
-    string line;
-    vector<string>lines;
+    ofstream file("clients.txt", ios::app);
 
-    if (file.is_open())
-    {
-        while (getline(file, line))
-        {
-            lines.push_back(line);
-        }
-        file.close();
-    }
-    return lines;
-}
-
-
-/// ================= ADD =================
-
-void FileManager::addClient(Client obj)
-{
-    string status = to_string(obj.getActive());
-    ofstream file("Clients.txt", ios::app);
-
-    if (file.is_open())
-    {
-
-    file << obj.get_id() << "&"
-        << obj.get_name() << "&"
-        << obj.get_password() << "&"
-        << obj.get_balance() << "&" << status << "&" << obj.get_loan() << "&"
-        << obj.get_risk_counter() << endl;
+    file << c.get_name() << ","
+        << c.get_password() << ","
+        << c.get_balance() << endl;
 
     file.close();
-    }
+
+    allClients.push_back(c);
 }
-
-void FileManager::addEmployee(Employee obj)
-{
-    ofstream file("Employees.txt", ios::app);
-
-    if (file.is_open())
-    {
-
-    file << obj.get_id() << "&"
-        << obj.get_name() << "&"
-        << obj.get_password() << "&"
-        << obj.get_salary() << endl;
-
-    file.close();
-    }
-}
-
-void FileManager::addAdmin(Admin obj)
-{
-    ofstream file("Admins.txt", ios::app);
-
-    if (file.is_open())
-    {
-
-    file << obj.get_id() << "&"
-        << obj.get_name() << "&"
-        << obj.get_password() << "&"
-        << obj.get_salary() << endl;
-
-    file.close();
-    }
-}
-
-/// ================= GET ALL =================
 
 void FileManager::getAllClients()
 {
-    ifstream file("Clients.txt");
+    ifstream file("clients.txt");
     string line;
 
-    if (file.is_open())
-    {
+    allClients.clear();
 
     while (getline(file, line))
     {
-        cout << line << endl;
+        string name, password;
+        double balance;
+
+        stringstream ss(line);
+        getline(ss, name, ',');
+        getline(ss, password, ',');
+        ss >> balance;
+
+        Client c(name, password, balance);
+        allClients.push_back(c);
     }
 
     file.close();
-    }
 }
-
-void FileManager::getAllEmployees()
-{
-    ifstream file("Employees.txt");
-    string line;
-
-    if (file.is_open())
-    {
-
-    while (getline(file, line))
-    {
-        cout << line << endl;
-    }
-
-    file.close();
-    }
-}
-
-void FileManager::getAllAdmins()
-{
-    ifstream file("Admins.txt");
-    string line;
-
-    if (file.is_open())
-    {
-
-    while (getline(file, line))
-    {
-        cout << line << endl;
-    }
-
-    file.close();
-    }
-}
-
-/// ================= REMOVE ALL =================
 
 void FileManager::removeAllClients()
 {
-    ofstream file("Clients.txt", ios::trunc);
+    ofstream file("clients.txt", ios::trunc);
     file.close();
+
+    allClients.clear();
 }
-
-void FileManager::removeAllEmployees()
-{
-    ofstream file("Employees.txt", ios::trunc);
-    file.close();
-}
-
-void FileManager::removeAllAdmins()
-{
-    ofstream file("Admins.txt", ios::trunc);
-    file.close();
-}
-
-
-
