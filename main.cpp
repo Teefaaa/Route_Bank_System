@@ -112,6 +112,7 @@ int main()
 
 */
 
+#include "Admin.h"
 #include "Client.h"
 #include "Employee.h"
 #include "FilesHelper.h"
@@ -120,60 +121,115 @@ int main()
 using namespace std;
 
 int main() {
-  // Step 1: Load existing clients from Clients.txt into allClients vector
+  // ============ STEP 1: Load all data from files ============
   FilesHelper::getClients();
+  FilesHelper::getEmployees();
+  FilesHelper::getAdmins();
 
   cout << "========================================" << endl;
-  cout << "   Clients loaded from file: " << allClients.size() << endl;
+  cout << "   Clients loaded:   " << allClients.size() << endl;
+  cout << "   Employees loaded: " << allEmployees.size() << endl;
+  cout << "   Admins loaded:    " << allAdmins.size() << endl;
   cout << "========================================" << endl << endl;
 
-  // Step 2: Display all clients before modifications
-  cout << "--- BEFORE modifications ---" << endl;
+  // ============ STEP 2: CLIENT file editing demo ============
+  cout << "--- CLIENT: Before ---" << endl;
   for (size_t i = 0; i < allClients.size(); i++) {
-    cout << "ID: " << allClients[i].get_id()
+    cout << "  ID: " << allClients[i].get_id()
          << " | Name: " << allClients[i].get_name()
          << " | Balance: " << allClients[i].get_balance()
          << " | Loan: " << allClients[i].get_loan() << endl;
   }
   cout << endl;
 
-  // Step 3: Perform some operations (these will auto-save to Clients.txt)
   if (allClients.size() >= 1) {
     cout << ">> Depositing 5000 to " << allClients[0].get_name() << "..."
          << endl;
-    allClients[0].deposit(5000);
+    allClients[0].deposit(5000); // saves to Clients.txt automatically
     cout << "   New balance: " << allClients[0].get_balance() << endl << endl;
   }
 
   if (allClients.size() >= 2) {
     cout << ">> Withdrawing 1000 from " << allClients[1].get_name() << "..."
          << endl;
-    allClients[1].withdraw(1000);
+    allClients[1].withdraw(1000); // saves to Clients.txt automatically
     cout << "   New balance: " << allClients[1].get_balance() << endl << endl;
   }
 
-  if (allClients.size() >= 3) {
-    cout << ">> Requesting loan for " << allClients[2].get_name() << "..."
-         << endl;
-    allClients[2].request_loan();
-    cout << "   New balance: " << allClients[2].get_balance()
-         << " | Loan: " << allClients[2].get_loan() << endl
-         << endl;
-  }
-
-  // Step 4: Display all clients after modifications
-  cout << "--- AFTER modifications ---" << endl;
+  cout << "--- CLIENT: After ---" << endl;
   for (size_t i = 0; i < allClients.size(); i++) {
-    cout << "ID: " << allClients[i].get_id()
+    cout << "  ID: " << allClients[i].get_id()
          << " | Name: " << allClients[i].get_name()
-         << " | Balance: " << allClients[i].get_balance()
-         << " | Loan: " << allClients[i].get_loan() << endl;
+         << " | Balance: " << allClients[i].get_balance() << endl;
+  }
+  cout << endl;
+  cout << ">> Clients.txt updated!" << endl << endl;
+
+  // ============ STEP 3: EMPLOYEE file editing demo ============
+  cout << "--- EMPLOYEE: Before ---" << endl;
+  for (size_t i = 0; i < allEmployees.size(); i++) {
+    cout << "  ID: " << allEmployees[i].get_id()
+         << " | Name: " << allEmployees[i].get_name()
+         << " | Salary: " << allEmployees[i].get_salary() << endl;
+  }
+  cout << endl;
+
+  // Create a new employee and add via Admin (if an admin exists)
+  if (allAdmins.size() >= 1) {
+    Employee newEmp("Youssef", "Emp@321", 8000);
+    cout << ">> Admin '" << allAdmins[0].get_name()
+         << "' adding new employee 'Youssef'..." << endl;
+    allAdmins[0].addEmployee(newEmp); // saves to Employees.txt automatically
+    cout << "   Employee added!" << endl << endl;
+
+    // Increase salary of first employee
+    if (allEmployees.size() >= 1) {
+      cout << ">> Admin increasing salary of '" << allEmployees[0].get_name()
+           << "' by 2000..." << endl;
+      allAdmins[0].increase_salary(allEmployees[0],
+                                   2000); // saves to Employees.txt
+      cout << "   New salary: " << allEmployees[0].get_salary() << endl << endl;
+    }
   }
 
+  cout << "--- EMPLOYEE: After ---" << endl;
+  for (size_t i = 0; i < allEmployees.size(); i++) {
+    cout << "  ID: " << allEmployees[i].get_id()
+         << " | Name: " << allEmployees[i].get_name()
+         << " | Salary: " << allEmployees[i].get_salary() << endl;
+  }
   cout << endl;
+  cout << ">> Employees.txt updated!" << endl << endl;
+
+  // ============ STEP 4: ADMIN file editing demo ============
+  cout << "--- ADMIN: Before ---" << endl;
+  for (size_t i = 0; i < allAdmins.size(); i++) {
+    cout << "  ID: " << allAdmins[i].get_id()
+         << " | Name: " << allAdmins[i].get_name()
+         << " | Salary: " << allAdmins[i].get_salary() << endl;
+  }
+  cout << endl;
+
+  // Create a new admin and save directly
+  Admin newAdmin("Khaled", "Admin@555", 12000);
+  allAdmins.push_back(newAdmin);
+  FilesHelper::saveAllAdmins(); // saves to Admins.txt
+  cout << ">> New admin 'Khaled' added and saved!" << endl << endl;
+
+  cout << "--- ADMIN: After ---" << endl;
+  for (size_t i = 0; i < allAdmins.size(); i++) {
+    cout << "  ID: " << allAdmins[i].get_id()
+         << " | Name: " << allAdmins[i].get_name()
+         << " | Salary: " << allAdmins[i].get_salary() << endl;
+  }
+  cout << endl;
+  cout << ">> Admins.txt updated!" << endl << endl;
+
+  // ============ DONE ============
   cout << "========================================" << endl;
-  cout << "   All changes saved to Clients.txt!" << endl;
-  cout << "   Open the file to verify." << endl;
+  cout << "   All changes saved to files!" << endl;
+  cout << "   Open Clients.txt, Employees.txt," << endl;
+  cout << "   and Admins.txt to verify." << endl;
   cout << "========================================" << endl;
 
   return 0;

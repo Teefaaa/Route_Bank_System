@@ -70,7 +70,10 @@ void Employee::display() {
 
 /// =========== OTHERS ===================
 
-void Employee::addClient(Client &client) { allClients.push_back(client); }
+void Employee::addClient(Client &client) {
+  allClients.push_back(client);
+  FilesHelper::saveAllClients();
+}
 
 Client *Employee::searchClient(int id) {
   for (size_t i = 0; i < allClients.size(); i++) {

@@ -158,3 +158,27 @@ void FilesHelper::saveAllClients() {
     file.close();
   }
 }
+
+void FilesHelper::saveAllEmployees() {
+  ofstream file("Employees.txt", ios::trunc);
+  if (file.is_open()) {
+    for (size_t i = 0; i < allEmployees.size(); i++) {
+      Employee &obj = allEmployees[i];
+      file << obj.get_id() << "&" << obj.get_name() << "&" << obj.get_password()
+           << "&" << obj.get_salary() << endl;
+    }
+    file.close();
+  }
+}
+
+void FilesHelper::saveAllAdmins() {
+  ofstream file("Admins.txt", ios::trunc);
+  if (file.is_open()) {
+    for (size_t i = 0; i < allAdmins.size(); i++) {
+      Admin &obj = allAdmins[i];
+      file << obj.get_id() << "&" << obj.get_name() << "&" << obj.get_password()
+           << "&" << obj.get_salary() << endl;
+    }
+    file.close();
+  }
+}

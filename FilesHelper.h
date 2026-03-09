@@ -17,6 +17,8 @@ public:
   static void saveAdmin(Admin a);
 
   static void saveAllClients();
+  static void saveAllEmployees();
+  static void saveAllAdmins();
 
   static void getClients();
   static void getEmployees();
