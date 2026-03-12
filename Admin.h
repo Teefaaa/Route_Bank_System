@@ -11,8 +11,10 @@ class Admin :
     public Employee
 {
 private:
-    static int admin_counter;
-    void turn_on();
+static int admin_counter;
+static bool admin_exists;
+    
+void turn_on();
 
     Admin(int id, string name, string password, double salary);
 
@@ -32,3 +34,4 @@ public:
     Employee* searchEmployee(int id);
     void listEmployee();
 };
+
