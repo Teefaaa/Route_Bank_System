@@ -4,16 +4,30 @@
 #include <iostream>
 
 int Admin::admin_counter = 1900000;
+bool Admin::admin_exists = false;
 
 void Admin::turn_on() { ; }
 
 Admin::Admin(string name, string password, double salary)
     : Employee(name, password, salary) {
+    if (admin_exists){
+       cout << "Only one Admin allowed in the system\n";
+       exit(0);
+   }
+
+   admin_exists = true;
+        
   this->id = /*admin_counter++*/ FilesHelper::getNextAdminId();
 }
 
 Admin::Admin(int id, string name, string password, double salary)
     : Employee(id, name, password, salary) {
+    if (admin_exists){
+     cout << "Only one Admin allowed in the system\n";
+     exit(0);
+ }
+
+ admin_exists = true;
   ;
 }
 void Admin::increase_salary(Employee &e, double amount) {
@@ -79,3 +93,4 @@ void Admin::listEmployee() {
     }
   }
 }
+
