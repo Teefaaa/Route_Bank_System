@@ -2,6 +2,7 @@
 
 #include <string>
 
+// Application entry point for the console UI
 void runapp();
 
 // Shared UI / console helpers
@@ -18,15 +19,6 @@ int search_client(int id);
 int search_employee(int id);
 int search_admin(int id);
 
-class Screens {
-};
-
-#pragma once
-
-
-void runapp();
-
-
-class Screens {
-};
+// Placeholder type for possible future screen-specific logic
+class Screens {};
 

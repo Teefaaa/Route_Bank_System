@@ -7,12 +7,12 @@
 #include "Client.h"
 #include "Employee.h"
 #include "FilesHelper.h"
+
 #include <chrono>
 #include <iomanip>
 #include <iostream>
 #include <string>
 #include <thread>
-#include <windows.h>
 
 using namespace std;
 
@@ -26,34 +26,17 @@ void printCentered(string text, int width) {
 // Clear screen
 void clearScreen() { system("cls"); }
 
-// Set console color (gold-ish = bright yellow)
-void setGoldColor() {
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN |
-                                        FOREGROUND_INTENSITY);
-}
+// Console color helpers using ANSI escape codes
+void setGoldColor() { cout << "\x1b[33;1m"; }  // bright yellow
 
-void setRedColor() {
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_INTENSITY);
-}
+void setRedColor() { cout << "\x1b[31;1m"; }   // bright red
 
-void setGreenColor() {
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
-}
+void setGreenColor() { cout << "\x1b[32;1m"; } // bright green
 
-void setBlueColor() {
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_INTENSITY);
-}
+void setBlueColor() { cout << "\x1b[34;1m"; }  // bright blue
 
 // Reset to default color
-void resetColor() {
-  HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-  SetConsoleTextAttribute(hConsole,
-                          FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
-}
+void resetColor() { cout << "\x1b[0m"; }
 
 int search_client(int id) {
   for (int i = 0; i < static_cast<int>(allClients.size()); i++) {
@@ -154,6 +137,7 @@ static void handleExitModule(const int consoleWidth) {
 }
 
 static void showMainMenu(short &module, const int consoleWidth) {
+  clearScreen();
   printCentered("WELCOME TO EGB BANK", consoleWidth);
   printCentered("=================================", consoleWidth);
   printCentered("APP MODULES", consoleWidth);
@@ -197,6 +181,8 @@ void runapp() {
   FilesHelper::getEmployees();
   FilesHelper::getAdmins();
   const int consoleWidth = 100;
+
+  showSplashScreen(consoleWidth);
 
   short module;
   do {

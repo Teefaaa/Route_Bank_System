@@ -9,7 +9,6 @@ using namespace std;
 int Client::client_counter = 2400000;
 double Client::total_balances = 0;
 double Client::total_loans = 0;
-int Client::transactionCount = 0;
 
 void Client::turn_on() { ; }
 

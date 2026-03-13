@@ -4,8 +4,10 @@
 #include "Employee.h"
 #include "Screens.h"
 
+#include <chrono>
 #include <iostream>
 #include <string>
+#include <thread>
 
 using namespace std;
 
@@ -207,14 +209,28 @@ void handleAdminModule(const int consoleWidth) {
             clearScreen();
             cout << "Enter the ID of the desired employee: ";
             cin >> id;
-            Employee *e = allAdmins[index_of_admin].searchEmployee(id);
-            setGreenColor();
-            cout << "Here is his profile: " << endl;
-            setGoldColor();
-            e->display();
-            cout << "\nPress Enter to return to menu...";
-            cin.ignore();
-            cin.get();
+            if (search_employee(id) == -1) {
+              setRedColor();
+              cout << "ERROR! Invalid Employee's ID" << endl;
+              setGoldColor();
+              this_thread::sleep_for(chrono::seconds(2));
+              clearScreen();
+            } else {
+              Employee *e = allAdmins[index_of_admin].searchEmployee(id);
+              if (!e) {
+                setRedColor();
+                cout << "Employee not found in current records :)" << endl;
+                setGoldColor();
+              } else {
+                setGreenColor();
+                cout << "Here is his profile: " << endl;
+                setGoldColor();
+                e->display();
+              }
+              cout << "\nPress Enter to return to menu...";
+              cin.ignore();
+              cin.get();
+            }
             break;
           }
           case 8: {

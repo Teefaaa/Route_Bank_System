@@ -4,8 +4,10 @@
 #include "Employee.h"
 #include "Screens.h"
 
+#include <chrono>
 #include <iostream>
 #include <string>
+#include <thread>
 
 using namespace std;
 
@@ -153,22 +155,50 @@ void handleEmployeeModule(const int consoleWidth) {
             clearScreen();
             cout << "Enter the ID of the desired client: ";
             cin >> id;
-            allEmployees[index_of_employee].count_clients_till(
-                allEmployees[index_of_employee].searchClient(id));
-            cout << "\nPress Enter to return to menu...";
-            cin.ignore();
-            cin.get();
+            if (search_client(id) == -1) {
+              setRedColor();
+              cout << "INVALID CLIENT ID, TRY AGAIN :)" << endl;
+              setGoldColor();
+              this_thread::sleep_for(chrono::seconds(2));
+              clearScreen();
+            } else {
+              Client *cPtr = allEmployees[index_of_employee].searchClient(id);
+              if (!cPtr) {
+                setRedColor();
+                cout << "Client not found in current records :)" << endl;
+                setGoldColor();
+              } else {
+                allEmployees[index_of_employee].count_clients_till(cPtr);
+              }
+              cout << "\nPress Enter to return to menu...";
+              cin.ignore();
+              cin.get();
+            }
             break;
           }
           case 7: {
             clearScreen();
             cout << "Enter the ID of the desired client: ";
             cin >> id;
-            allEmployees[index_of_employee].view_client_balance(
-                allEmployees[index_of_employee].searchClient(id));
-            cout << "\nPress Enter to return to menu...";
-            cin.ignore();
-            cin.get();
+            if (search_client(id) == -1) {
+              setRedColor();
+              cout << "INVALID CLIENT ID, TRY AGAIN :)" << endl;
+              setGoldColor();
+              this_thread::sleep_for(chrono::seconds(2));
+              clearScreen();
+            } else {
+              Client *cPtr = allEmployees[index_of_employee].searchClient(id);
+              if (!cPtr) {
+                setRedColor();
+                cout << "Client not found in current records :)" << endl;
+                setGoldColor();
+              } else {
+                allEmployees[index_of_employee].view_client_balance(cPtr);
+              }
+              cout << "\nPress Enter to return to menu...";
+              cin.ignore();
+              cin.get();
+            }
             break;
           }
           case 8: {
@@ -223,14 +253,28 @@ void handleEmployeeModule(const int consoleWidth) {
             clearScreen();
             cout << "Enter the ID of the desired client: ";
             cin >> id;
-            Client *c = allEmployees[index_of_employee].searchClient(id);
-            setGreenColor();
-            cout << "Here is his profile: " << endl;
-            setGoldColor();
-            c->display();
-            cout << "\nPress Enter to return to menu...";
-            cin.ignore();
-            cin.get();
+            if (search_client(id) == -1) {
+              setRedColor();
+              cout << "INVALID CLIENT ID, TRY AGAIN :)" << endl;
+              setGoldColor();
+              this_thread::sleep_for(chrono::seconds(2));
+              clearScreen();
+            } else {
+              Client *c = allEmployees[index_of_employee].searchClient(id);
+              if (!c) {
+                setRedColor();
+                cout << "Client not found in current records :)" << endl;
+                setGoldColor();
+              } else {
+                setGreenColor();
+                cout << "Here is his profile: " << endl;
+                setGoldColor();
+                c->display();
+              }
+              cout << "\nPress Enter to return to menu...";
+              cin.ignore();
+              cin.get();
+            }
             break;
           }
           case 10: {

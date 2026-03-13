@@ -32,7 +32,7 @@ private:
 
     static const int MAX_TRANSACTIONS = 100;
     Transaction transactions[MAX_TRANSACTIONS];
-    static int transactionCount;
+    int transactionCount;
 
     bool autoTransferDone;
     void turn_on();
