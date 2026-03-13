@@ -1,12 +1,14 @@
 # depslib dependency file v1.0
-1770977990 source:c:\users\mosta\desktop\route\route bank system\admin.cpp
+1773366939 source:c:\users\mosta\desktop\route\route bank system\admin.cpp
 	"Admin.h"
+	"FilesHelper.h"
 	<iostream>
+	<iomanip>
 
-1770977341 c:\users\mosta\desktop\route\route bank system\admin.h
+1773366939 c:\users\mosta\desktop\route\route bank system\admin.h
 	"Employee.h"
 
-1770971588 c:\users\mosta\desktop\route\route bank system\employee.h
+1773325150 c:\users\mosta\desktop\route\route bank system\employee.h
 	"Person.h"
 	"Client.h"
 
@@ -17,9 +19,10 @@
 1770816613 c:\users\mosta\desktop\route\route bank system\validate.h
 	<string>
 
-1770977172 c:\users\mosta\desktop\route\route bank system\client.h
+1773324771 c:\users\mosta\desktop\route\route bank system\client.h
 	"Person.h"
 	"Transaction.h"
+	<vector>
 
 1770816613 c:\users\mosta\desktop\route\route bank system\transaction.h
 	<string>
@@ -27,14 +30,16 @@
 
 1770818840 c:\users\mosta\desktop\route\route bank system\time.h
 
-1770977173 source:c:\users\mosta\desktop\route\route bank system\client.cpp
+1773324771 source:c:\users\mosta\desktop\route\route bank system\client.cpp
 	"Client.h"
 	<cmath>
 	<iomanip>
 	<iostream>
+	"FilesHelper.h"
 
-1770977990 source:c:\users\mosta\desktop\route\route bank system\employee.cpp
+1773325150 source:c:\users\mosta\desktop\route\route bank system\employee.cpp
 	"Employee.h"
+	"FilesHelper.h"
 	<iostream>
 
 1770819489 source:c:\users\mosta\desktop\route\route bank system\person.cpp
@@ -52,10 +57,50 @@
 1770816613 source:c:\users\mosta\desktop\route\route bank system\validate.cpp
 	"Validate.h"
 
-1770978272 source:c:\users\mosta\desktop\route\route bank system\main.cpp
+1773367918 source:c:\users\mosta\desktop\route\route bank system\main.cpp
 	<iostream>
+	<string>
+	<thread>
+	<chrono>
+	<windows.h>
+	"Admin.h"
+	"Client.h"
+	"Employee.h"
+	"FilesHelper.h"
+	<iomanip>
+
+1773238055 source:c:\users\mosta\desktop\route\route bank system\fileshelper.cpp
+	"FilesHelper.h"
+	<fstream>
+
+1773238056 c:\users\mosta\desktop\route\route bank system\fileshelper.h
+	"Admin.h"
+	"FileManager.h"
+
+1772123823 source:c:\users\mosta\desktop\route\route bank system\filemanager.cpp
+	"FileManager.h"
+
+1772123806 c:\users\mosta\desktop\route\route bank system\filemanager.h
+	"DataSourceInterface.h"
+	<fstream>
+	<iostream>
+	<vector>
+	"parser.h"
+
+1772124193 c:\users\mosta\desktop\route\route bank system\datasourceinterface.h
 	"Client.h"
 	"Employee.h"
 	"Admin.h"
-	<iomanip>
+
+1772027490 source:c:\users\mosta\desktop\route\route bank system\parser.cpp
+	"parser.h"
+	<sstream>
+	<string>
+
+1772025686 c:\users\mosta\desktop\route\route bank system\parser.h
+	<vector>
+	<string>
+	"Client.h"
+	"Employee.h"
+	"Admin.h"
 

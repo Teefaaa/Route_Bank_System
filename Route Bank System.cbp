@@ -35,8 +35,15 @@
 		<Unit filename="Admin.h" />
 		<Unit filename="Client.cpp" />
 		<Unit filename="Client.h" />
+		<Unit filename="DataSourceInterface.h" />
 		<Unit filename="Employee.cpp" />
 		<Unit filename="Employee.h" />
+		<Unit filename="FileManager.cpp" />
+		<Unit filename="FileManager.h" />
+		<Unit filename="FilesHelper.cpp" />
+		<Unit filename="FilesHelper.h" />
+		<Unit filename="Parser.cpp" />
+		<Unit filename="Parser.h" />
 		<Unit filename="Person.cpp" />
 		<Unit filename="Person.h" />
 		<Unit filename="Time.cpp" />

@@ -32,12 +32,12 @@ private:
 
     static const int MAX_TRANSACTIONS = 100;
     Transaction transactions[MAX_TRANSACTIONS];
-    int transactionCount;
+    static int transactionCount;
 
     bool autoTransferDone;
     void turn_on();
     bool isTransferTimeAllowed();
-    string getAccountStatus();
+    string getAccountProgress();
 
 
     Client(int id, string name, string password, double balance,
@@ -46,8 +46,8 @@ private:
             /// THIS ONLY FOR CREATING OBJECTS WHICH COME FROM FILES
 
 public:
-    Client(string name, string password, double balance);
-
+    Client(string name, string password, double balance); /// Normal Condition
+    Client(string name, string password);
 
     void set_balance(double balance);
     double get_balance();
@@ -65,7 +65,7 @@ public:
     void change_password(string oldPassword ,string newPassword);
 
     void check_balance();
-    void check_account_status();
+    void check_account_progress();
     void show_transaction_history();
 
     double get_loan() const;
