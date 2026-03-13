@@ -11,7 +11,8 @@ class Admin :
     public Employee
 {
 private:
-    static int admin_counter;
+static int admin_counter;
+static Admin* instance;
     void turn_on();
 
     Admin(int id, string name, string password, double salary);
@@ -21,6 +22,7 @@ private:
 
 public:
     Admin(string name, string password, double salary);
+static Admin* getInstance(string name, string password, double salary);
     void see_system_statistics_till(Client* c,Employee* e);
     void risk_assessment(Client& c);
     void increase_salary(Employee& e, double amount);
@@ -32,3 +34,4 @@ public:
     Employee* searchEmployee(int id);
     void listEmployee();
 };
+
