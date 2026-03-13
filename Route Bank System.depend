@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1773366939 source:c:\users\mosta\desktop\route\route bank system\admin.cpp
+1773414670 source:c:\users\mosta\desktop\route\route bank system\admin.cpp
 	"Admin.h"
 	"FilesHelper.h"
 	<iostream>
 	<iomanip>
 
-1773366939 c:\users\mosta\desktop\route\route bank system\admin.h
+1773414670 c:\users\mosta\desktop\route\route bank system\admin.h
 	"Employee.h"
 
 1773325150 c:\users\mosta\desktop\route\route bank system\employee.h
@@ -30,14 +30,14 @@
 
 1770818840 c:\users\mosta\desktop\route\route bank system\time.h
 
-1773324771 source:c:\users\mosta\desktop\route\route bank system\client.cpp
+1773429171 source:c:\users\mosta\desktop\route\route bank system\client.cpp
 	"Client.h"
 	<cmath>
 	<iomanip>
 	<iostream>
 	"FilesHelper.h"
 
-1773325150 source:c:\users\mosta\desktop\route\route bank system\employee.cpp
+1773429171 source:c:\users\mosta\desktop\route\route bank system\employee.cpp
 	"Employee.h"
 	"FilesHelper.h"
 	<iostream>
@@ -57,17 +57,8 @@
 1770816613 source:c:\users\mosta\desktop\route\route bank system\validate.cpp
 	"Validate.h"
 
-1773406051 source:c:\users\mosta\desktop\route\route bank system\main.cpp
-	<iostream>
-	<string>
-	<thread>
-	<chrono>
-	<windows.h>
-	"Admin.h"
-	"Client.h"
-	"Employee.h"
-	"FilesHelper.h"
-	<iomanip>
+1773433533 source:c:\users\mosta\desktop\route\route bank system\main.cpp
+	"Screens.h"
 
 1773238055 source:c:\users\mosta\desktop\route\route bank system\fileshelper.cpp
 	"FilesHelper.h"
@@ -103,4 +94,64 @@
 	"Client.h"
 	"Employee.h"
 	"Admin.h"
+
+1773433113 source:c:\users\mosta\desktop\route\route bank system\clientmanager.cpp
+	"ClientManager.h"
+	"Client.h"
+	"FilesHelper.h"
+	"Screens.h"
+	<chrono>
+	<iomanip>
+	<iostream>
+	<string>
+	<thread>
+
+1773433113 c:\users\mosta\desktop\route\route bank system\clientmanager.h
+
+1773433113 c:\users\mosta\desktop\route\route bank system\screens.h
+	<string>
+
+1773433474 source:c:\users\mosta\desktop\route\route bank system\screens.cpp
+	"Screens.h"
+	"AdminManager.h"
+	"ClientManager.h"
+	"EmployeeManager.h"
+	"Admin.h"
+	"Client.h"
+	"Employee.h"
+	"FilesHelper.h"
+	<chrono>
+	<iomanip>
+	<iostream>
+	<string>
+	<thread>
+	<windows.h>
+
+1773433113 c:\users\mosta\desktop\route\route bank system\adminmanager.h
+
+1773433113 c:\users\mosta\desktop\route\route bank system\employeemanager.h
+
+1773433228 source:c:\users\mosta\desktop\route\route bank system\adminmanager.cpp
+	"AdminManager.h"
+	"Admin.h"
+	"Employee.h"
+	"Screens.h"
+	<iostream>
+	<string>
+	<chrono>
+	<iomanip>
+	<thread>
+	<windows.h>
+
+1773433238 source:c:\users\mosta\desktop\route\route bank system\employeemanager.cpp
+	"EmployeeManager.h"
+	"Client.h"
+	"Employee.h"
+	"Screens.h"
+	<iostream>
+	<string>
+	<chrono>
+	<iomanip>
+	<thread>
+	<windows.h>
 

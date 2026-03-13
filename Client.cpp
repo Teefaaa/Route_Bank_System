@@ -9,6 +9,7 @@ using namespace std;
 int Client::client_counter = 2400000;
 double Client::total_balances = 0;
 double Client::total_loans = 0;
+int Client::transactionCount = 0;
 
 void Client::turn_on() { ; }
 
@@ -52,6 +53,8 @@ Client::Client(int id, string name, string password, double balance,
     this->isActive = status;
     this->loan = loan;
     this->risk_counter = risk_counter;
+    this->total_balances += this->balance;
+    this->total_loans += this->loan;
 }
 
 /* ================= ACCOUNT STATUS ================= */
@@ -197,6 +200,7 @@ void Client::deposit(double amount)
 
     balance += amount;
     this-> total_balances += amount;
+    cout << "Successfully Added :)" << endl;
     if(amount >= 500000)
         risk_counter++;
 
@@ -219,6 +223,7 @@ void Client::withdraw(double amount)
     {
         balance -= amount;
         this-> total_balances -= amount;
+        cout << "Successfully Withdrawn :)" << endl;
 
         if (transactionCount < MAX_TRANSACTIONS)
             transactions[transactionCount++] =
@@ -283,7 +288,7 @@ void Client:: request_loan()
 
 void Client::check_balance()
 {
-    cout << "Balance: " << balance << endl;
+    cout << "Balance: " << fixed << setprecision(6) <<  balance << endl;
 }
 
 void Client::check_account_progress()

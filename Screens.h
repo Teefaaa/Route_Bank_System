@@ -2,7 +2,6 @@
 
 #include <string>
 
-// Application entry point for the console UI
 void runapp();
 
 // Shared UI / console helpers
@@ -19,6 +18,7 @@ int search_client(int id);
 int search_employee(int id);
 int search_admin(int id);
 
-// Placeholder type for possible future screen-specific logic
-class Screens {};
 
+void showSplashScreen(int consoleWidth);
+void handleExitModule(const int consoleWidth);
+void showMainMenu(short &module, const int consoleWidth);

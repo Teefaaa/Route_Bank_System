@@ -20,6 +20,7 @@ Employee::Employee(int id, string name, string password, double salary)
 {
     this->id= id;
     this->salary = salary;
+    this->total_salaries += this->salary;
 }
 
 void Employee::set_salary(double salary)
