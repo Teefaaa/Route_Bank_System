@@ -5,41 +5,18 @@
 
 
 int Admin::admin_counter = 1900000;
-Admin* Admin::instance = nullptr;
+
 
 void Admin::turn_on() { ; }
 
 Admin::Admin(string name, string password, double salary)
     : Employee(name, password, salary)
 {
-     if (instance != nullptr)
-     {
-     cout << "Only one Admin allowed\n";
-     exit(0);
- }
-
- instance = this;
     this->id = FilesHelper::getNextAdminId();
 }
 
 Admin::Admin(int id, string name, string password, double salary)
-       : Employee(id, name, password, salary){
-           if (instance != nullptr)
-    {
-        cout << "Only one Admin allowed\n";
-        exit(0);
-    }
-
-    instance = this;
-       }
-Admin* Admin::getInstance(string name, string password, double salary){
-    if (instance == nullptr)
-    {
-        instance = new Admin(name, password, salary);
-    }
-
-    return instance;
-}
+       : Employee(id, name, password, salary){;}
 void Admin:: increase_salary(Employee& e,double amount)
 {
     e.set_salary(e.get_salary() + amount);
@@ -122,6 +99,5 @@ void Admin::listEmployee()
         }
     }
 }
-
 
 
