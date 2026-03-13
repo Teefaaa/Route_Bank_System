@@ -32,7 +32,7 @@ void Admin:: decrease_salary(Employee& e, double amount)
 void Admin::see_system_statistics_till(Client* c, Employee* e)
 {
     cout << "Number of Clients: " << count_clients_till(c) << endl;
-    cout << "Number of Employees: " << e->get_id() - 2099999 << endl;
+    cout << "Number of Employees: " << static_cast<int>(allEmployees.size()) << endl;
     cout << "Total Balances: " << fixed << setprecision(6) << c->get_total_balances() << endl;
     cout << "Total Loans: " << c->get_total_loans() << endl;
     cout << "Total Salaries: " << e->total_salaries << endl;
