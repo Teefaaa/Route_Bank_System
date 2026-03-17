@@ -134,4 +134,15 @@ If you intend to publish or reuse this code, consider adding a `LICENSE` file (f
 ---
 
 ## Notes
+## Contributions (Mostafa Aly)
 
+As part of the team and serving as the team leader, I contributed to:
+
+- Implementing and developing core features across the **Client, Employee, and Admin modules**.
+- Reviewing, optimizing, and refining all modules to improve efficiency and performance.
+- Designing the system architecture and role-based structure for maintainability and scalability.
+- Managing file handling (reading/writing client, employee, and admin data) and integrating it with the application logic.
+- Debugging, testing, and enhancing overall application performance.
+- Coordinating and collaborating with team members to ensure seamless integration of all modules into a cohesive system.
+
+> This project was developed collaboratively as a team effort.
